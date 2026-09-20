@@ -1,10 +1,15 @@
 package com.strikes.crudDtoDemo.controller;
 
-import com.strikes.crudDtoDemo.dto.StudentRequestDTO;
-import com.strikes.crudDtoDemo.dto.StudentResponseDTO;
+import com.strikes.crudDtoDemo.dto.CreateStudentRequestDTO;
+import com.strikes.crudDtoDemo.dto.CreateStudentResponseDTO;
+import com.strikes.crudDtoDemo.dto.UpdateStudentRequestDTO;
+import com.strikes.crudDtoDemo.dto.UpdateStudentResponseDTO;
 import com.strikes.crudDtoDemo.service.StudentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/students")
@@ -16,20 +21,51 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    // Create
     @PostMapping("/create")
-    public ResponseEntity<StudentResponseDTO> createStudent(
-            @RequestBody StudentRequestDTO studentRequestDto) {
+    public ResponseEntity<CreateStudentResponseDTO> createStudent(
+            @RequestBody CreateStudentRequestDTO studentRequestDto) {
 
-        StudentResponseDTO studentResp =
+        CreateStudentResponseDTO studentResp =
                 studentService.createStudent(studentRequestDto);
+
+        return ResponseEntity.status(201).body(studentResp);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CreateStudentResponseDTO> getStudent(
+            @PathVariable UUID id) {
+
+        CreateStudentResponseDTO studentResp =
+                studentService.getStudent(id);
+
+        if (studentResp == null) {
+            return ResponseEntity.notFound().build();
+        }
 
         return ResponseEntity.ok(studentResp);
     }
 
-    // Read
+    @PatchMapping("/{id}")
+    public ResponseEntity<UpdateStudentResponseDTO> updateStudent(
+            @PathVariable UUID id,
+            @RequestBody UpdateStudentRequestDTO studentReq) {
 
-    // Update
+        UpdateStudentResponseDTO studentResp =
+                studentService.updateStudent(id, studentReq);
 
-    // Delete
+        if (studentResp == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(studentResp);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CreateStudentResponseDTO>> getAllStudents() {
+
+        List<CreateStudentResponseDTO> students =
+                studentService.getAllStudents();
+
+        return ResponseEntity.ok(students);
+    }
 }

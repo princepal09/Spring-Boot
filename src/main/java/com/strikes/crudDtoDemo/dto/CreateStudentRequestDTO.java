@@ -1,6 +1,6 @@
 package com.strikes.crudDtoDemo.dto;
 
-public class StudentRequestDTO {
+public class CreateStudentRequestDTO {
     private  String name;
     private String email;
     private int age;

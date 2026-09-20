@@ -3,42 +3,8 @@ package com.strikes.crudDtoDemo.dto;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class StudentResponseDTO {
-
+public class UpdateStudentResponseDTO {
     private UUID id;
-    private  String name;
-    private int age;
-    private String email;
-    private int rollNo;
-    private String subject;
-    private String message;
-    private LocalDateTime createdAt;
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    private LocalDateTime updatedAt;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -46,6 +12,14 @@ public class StudentResponseDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public int getAge() {
@@ -87,4 +61,20 @@ public class StudentResponseDTO {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    private String name;
+    private int age;
+    private String email;
+    private int rollNo;
+    private String subject;
+    private String message;
+    private LocalDateTime updatedAt;
 }

@@ -10,6 +10,4 @@ public class CrudDtoDemoApplication {
 		SpringApplication.run(CrudDtoDemoApplication.class, args);
 		System.out.println("Server is running");
 	}
-
-
 }
