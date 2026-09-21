@@ -6,6 +6,7 @@ import com.strikes.crudDtoDemo.dto.UpdateStudentRequestDTO;
 import com.strikes.crudDtoDemo.dto.UpdateStudentResponseDTO;
 import com.strikes.crudDtoDemo.service.StudentService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<CreateStudentResponseDTO> createStudent( @Valid
             @RequestBody CreateStudentRequestDTO studentRequestDto) {
 
@@ -58,6 +59,7 @@ public class StudentController {
             @PathVariable UUID id,
             @RequestBody UpdateStudentRequestDTO studentReq) {
 
+
         UpdateStudentResponseDTO studentResp =
                 studentService.updateStudent(id, studentReq);
 
@@ -75,5 +77,19 @@ public class StudentController {
                 studentService.getAllStudents();
 
         return ResponseEntity.ok(students);
+
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteStudent(@PathVariable UUID id) {
+
+        studentService.deleteStudent(id);
+
+        return ResponseEntity.noContent().build();
+
+    }
+
+    public ResponseEntity<String> deleteStudentSoftly(@PathVariable UUID id){
+        studentService.deleteStudentSoftly(id);
+        return  ResponseEntity.noContent().build();
     }
 }

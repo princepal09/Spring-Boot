@@ -5,7 +5,7 @@ import jakarta.validation.constraints.*;
 
 public class CreateStudentRequestDTO {
     @NotBlank(message = "Name cannot be empty")
-    @Size(min=2, max = 5, message = "Student name must be within 2 to 50 characters is required")
+    @Size(min=2, max = 10, message = "Student name must be within 2 to 50 characters is required")
     private  String name;
 
     @NotBlank(message = "Email is required")

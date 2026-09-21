@@ -11,4 +11,6 @@ import java.util.UUID;
 public interface StudentRepository extends JpaRepository<Student, UUID> {
     Optional<Student> findByIdAndDeletedIsFalse(UUID id);
     List<Student> findAllByDeletedFalse();
+    Boolean existsByEmail(String email);
+
 }
